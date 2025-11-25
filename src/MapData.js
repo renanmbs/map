@@ -18,19 +18,19 @@ export const stateNames = {
 
 // --- SALES MAP CONFIG ---
 const salesRepMap = {
-    // Allison = Red (8 States)
-    AK: "Allison", CA: "Allison", ID: "Allison", HI: "Allison", NV: "Allison",
-    OR: "Allison", UT: "Allison", WA: "Allison",
-    // Theresa = Blue (20 States)
-    AL: "Theresa", AR: "Theresa", FL: "Theresa", GA: "Theresa", IA: "Theresa",
-    IL: "Theresa", KS: "Theresa", LA: "Theresa", MN: "Theresa", MO: "Theresa",
-    MS: "Theresa", MT: "Theresa", NE: "Theresa", ND: "Theresa", NM: "Theresa",
-    OK: "Theresa", SD: "Theresa", TX: "Theresa", WI: "Theresa", WY: "Theresa",
-    // Both = Yellow (23 States)
-    AZ: "Both", CT: "Both", CO: "Both", DC: "Both", DE: "Both", IN: "Both",
-    KY: "Both", ME: "Both", MD: "Both", MA: "Both", MI: "Both", NH: "Both",
+    // Allison = Red (14 States)
+    AK: "Allison",  AZ: "Allison", CA: "Allison", CO: "Allison", ID: "Allison", HI: "Allison", ND: "Allison", NV: "Allison", MT: "Allison", 
+    OR: "Allison", UT: "Allison", SD: "Allison", WA: "Allison", WY: "Allison",
+    // Theresa = Blue (12 States)
+    AL: "Theresa", AR: "Theresa", FL: "Theresa", GA: "Theresa",
+    KS: "Theresa", LA: "Theresa", MO: "Theresa",
+    MS: "Theresa", NE: "Theresa", NM: "Theresa",
+    OK: "Theresa", TX: "Theresa", 
+    // Both = Yellow (25 States)
+    CT: "Both", DC: "Both", DE: "Both", IN: "Both", IL: "Both", IA: "Both",
+    KY: "Both", ME: "Both", MD: "Both", MA: "Both", MI: "Both", MN: "Both", NH: "Both",
     NY: "Both", NJ: "Both", NC: "Both", OH: "Both", PA: "Both", RI: "Both",
-    SC: "Both", TN: "Both", VT: "Both", VA: "Both", WV: "Both",
+    SC: "Both", TN: "Both", VT: "Both", VA: "Both", WV: "Both", WI: "Both",
 };
 
 export const SALES_CONFIG = {
