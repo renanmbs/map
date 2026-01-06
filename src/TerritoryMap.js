@@ -14,7 +14,7 @@ function normalizeId(id) {
 export default function TerritoryMap({ config, query, setQuery, isSalesMap, handleToggle }) {
     // eslint-disable-next-line
     const { title, svgPath, repMap, legend } = config;
-    
+
     const [svgText, setSvgText] = useState(null);
     const containerRef = useRef(null);
     const [hovered, setHovered] = useState(null); // postal like "CA"
@@ -64,14 +64,14 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
         if (!svgEl) return;
 
         const stateElements = svgEl.querySelectorAll("path[id], polygon[id], g[id]");
-        
+
         const cleanupListeners = [];
 
         stateElements.forEach((el) => {
             const rawId = el.getAttribute("id");
             const postal = normalizeId(rawId);
             const rep = repMap[postal] || null;
-            
+
             // 🛑 FIX: Ignore non-state elements based on common SVG map metadata IDs
             const ignoredIds = ["legend-svg", "legend-g-svg", "credit-text-svg"];
             if (rawId && ignoredIds.includes(rawId.toLowerCase())) {
@@ -92,7 +92,7 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
 
             const label = (postal && stateNames[postal]) ? `${stateNames[postal]} — ${rep || "No assignment"}` : rawId;
             el.setAttribute("aria-label", label);
-            el.setAttribute("tabindex", "0"); 
+            el.setAttribute("tabindex", "0");
 
             // event handlers
             const onEnter = (ev) => {
@@ -137,7 +137,7 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
             document.removeEventListener("click", onDocClick);
             cleanupListeners.forEach(fn => fn());
         };
-    }, [svgText, repMap]); 
+    }, [svgText, repMap]);
 
     // Helper: get postal from postal or full name or partials
     function findPostalFromQuery(q) {
@@ -170,11 +170,11 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
     useEffect(() => {
         const svgEl = containerRef.current?.querySelector("svg");
         if (!svgEl) return;
-        
+
         // Clear all highlight classes
         svgEl.querySelectorAll(".st-active, .st-hover").forEach((el) => {
-             el.classList.remove("st-active");
-             el.classList.remove("st-hover");
+            el.classList.remove("st-active");
+            el.classList.remove("st-hover");
         });
 
         // Apply st-active for selected
@@ -195,23 +195,23 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
     const activePostal = selected || hovered;
     const activeName = activePostal ? stateNames[activePostal] || activePostal : null;
     const activeRep = activePostal ? (repMap[activePostal] || "No assignment") : null;
-    
+
     // --- Switch UI Component ---
     const SwitchComponent = (
         <div className="map-type-switch">
             <span className={`switch-label ${isSalesMap ? 'active' : ''}`}>Sales Map</span>
-            <button 
-                className="toggle-button" 
+            <button
+                className="toggle-button"
                 onClick={handleToggle}
                 aria-label={`Switch to ${isSalesMap ? 'Shipping Location Map' : 'Sales Representative Map'}`}
                 // Dynamic style applied here for the "green active" effect
-                style={{ backgroundColor: isSalesMap ? '#2ecc71' : '#ccc' }} 
+                style={{ backgroundColor: isSalesMap ? '#2ecc71' : '#ccc' }}
             >
-                <div 
-                    className="toggle-slider" 
-                    style={{ 
+                <div
+                    className="toggle-slider"
+                    style={{
                         // Move to the right (30px) when Sales Map (active/green) is selected
-                        transform: isSalesMap ? 'translateX(30px)' : 'translateX(0)', 
+                        transform: isSalesMap ? 'translateX(30px)' : 'translateX(0)',
                     }}
                 ></div>
             </button>
@@ -222,7 +222,16 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
     return (
         <div className="stm-root">
             <div className="stm-header">
-                <img src={monarchLogo} alt='Monarch Logo' className='stm-logo' />
+
+                {monarchLogo && (
+                    <a href="https://monarchintranet.netlify.app/">
+                        <img
+                            src={monarchLogo}
+                            alt="CMonarch Logo"
+                            className="stm-logo"
+                        />
+                    </a>
+                )}
                 <div className="stm-title-search">
                     <p>{title}</p>
                     <div className="stm-search">
@@ -256,7 +265,7 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
                     {/* Inject the switch component here */}
                     {SwitchComponent}
                     <hr className="panel-divider" />
-                    
+
                     {activePostal ? (
                         <>
                             <div className="stm-panel-state">{activeName} <span className="stm-postal">({activePostal})</span></div>
