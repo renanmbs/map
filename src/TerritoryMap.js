@@ -1,6 +1,6 @@
 // TerritoryMap.js (Modified to include the switch in the panel)
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import monarchLogo from './images/Monarch3Logo.svg';
+import monarchLogo from './image/Monarch3Logo.svg';
 import { stateNames } from "./MapData";
 
 /**
@@ -227,7 +227,7 @@ export default function TerritoryMap({ config, query, setQuery, isSalesMap, hand
                     <a href="https://monarchintranet.netlify.app/">
                         <img
                             src={monarchLogo}
-                            alt="CMonarch Logo"
+                            alt="Monarch Logo"
                             className="stm-logo"
                         />
                     </a>
